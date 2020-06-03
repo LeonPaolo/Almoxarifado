@@ -105,6 +105,7 @@ class EmprestarController extends Controller
     public function Devolvidos()
     {
          $collection = DB::table('items')->join('amigos','items.amigo_id','amigos.id')
+        ->join('users', 'items.usuario_id', 'users.id')
         ->select('items.id','amigos.nome', 'amigos.email', 'amigos.fone', 'items.nome as produto', 'items.descricao as dsc', 'items.dt_emprestimo as dia', 'items.dt_devolucao')
         ->whereNotNull('items.dt_devolucao')->get();
         return view('devolvidos', compact('collection'));
