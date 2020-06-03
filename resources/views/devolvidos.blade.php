@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header">Almoxafirado</div>
+                <div class="card-header">Itens que foram devolvidos</div>
 
                 <div class="card-body">
                     <table class="table">
