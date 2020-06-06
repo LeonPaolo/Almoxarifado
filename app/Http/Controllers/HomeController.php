@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\item;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -29,6 +29,7 @@ class HomeController extends Controller
         $collection = DB::table('items')->join('amigos','items.amigo_id','amigos.id')
         ->join('users', 'items.usuario_id', 'users.id')
         ->select('items.id','amigos.nome', 'amigos.email', 'amigos.fone', 'items.nome as produto', 'items.descricao as dsc', 'items.dt_emprestimo as dia')
+        ->where('users.id', Auth::user()->id)        
         ->whereNull('items.dt_devolucao')->get();
         return view('home', compact('collection'));        
     }
