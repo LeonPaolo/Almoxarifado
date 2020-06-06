@@ -1,29 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-10">
-            <div class="card">
-                <div class="card-header">Itens que foram devolvidos</div>
 
+@include('menuLateral')
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-success text-white"><i class="fas fa-handshake"></i> Itens devolvidos</div>
                 <div class="card-body">
                     <table class="table">
-                          <thead class="thead-dark">
+                          <thead class="bg-secondary text-white" >
                             <tr>
-                              <th scope="col">#</th>
-                              <th scope="col">Produto</th>
-                              <th scope="col">Descrição</th>
-                              <th scope="col">Contato</th>
-                              <th scope="col">Email</th>
-                              <th scope="col">Data do emprestimo</th>
-                              <th scope="col">data da devolção</th>
+                              <th >#</th>
+                              <th >Produto</th>
+                              <th >Descrição</th>
+                              <th >Contato</th>
+                              <th >Email</th>
+                              <th >Empréstimo em</th>
+                              <th >Devolvido em</th>
                             </tr>
                           </thead>
                           <tbody>
                             @forelse($collection as $lista)
                             <tr>
-                              <th scope="row">{{$loop->iteration}}</th>
+                              <th >{{$loop->iteration}}</th>
                               <td>{{$lista->produto}}</td>
                               <td>{{$lista->dsc}}</td>
                               <td>{{$lista->fone}}</td>
@@ -31,21 +31,20 @@
                               <td>{{date('d/m/Y', strtotime($lista->dia))}}</td>
                               <td>{{date('d/m/Y', strtotime($lista->dt_devolucao))}}</td>
                             @empty
-                            <td colspan="5">
-                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                          <strong>Você não tem nada emprestado!!!</strong> 
-                          
-                        </div>
-                        </td>
-                            </tr>
+                            <table class="ml-4 mt-2">
+                              <tr>
+                                <td class="font-weight-normal" style="color: #333;">
+                                  <i class="fas fa-thumbs-up"></i> Ainda não fez nenhum empréstimo</td>
+                                </tr>
+                            </table> 
 
                             @endforelse
-
+                            </tr>
                           </tbody>
-                        </table>
+                      </table>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
 @endsection
